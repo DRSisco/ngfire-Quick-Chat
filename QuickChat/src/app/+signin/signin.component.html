@@ -1,3 +1,9 @@
-<p>
-  signin works!
-</p>
+<div fxLayoutAlign="center center">
+  <md-card fxLayout="column" fxLayoutAlign="none center">
+    <md-card-title>
+      <span fxShow="false" fxShow.gt-xs>You must be signed in to use this app!</span>
+      <span fxShow="false" fxShow.xs>Must be signed in!</span>
+    </md-card-title>
+    <button md-button id="google-button" (click)="authService.signinWithGoogle()"></button>
+  </md-card>
+</div>

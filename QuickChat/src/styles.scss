@@ -3,3 +3,9 @@ body {
     margin: 0;
     background-color: #ddd;
 }
+
+html, body, material-app, md-sidenav-container {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}

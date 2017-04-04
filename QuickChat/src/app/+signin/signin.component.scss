@@ -1,0 +1,18 @@
+md-card {
+    margin: 30px 10px;
+    padding: 20px 40px;
+    #google-button {
+        background-color: transparent;
+        background-image: url("/assets/images/google_signin_dark.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 191px;
+        height: 46px;
+        border: none;
+
+        &:active {
+            background-image: url("/assets/images/google_signin_dark_pressed.png");
+        }
+    }
+}
+
