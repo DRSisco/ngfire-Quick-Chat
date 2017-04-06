@@ -1,9 +1,18 @@
 <div fxLayoutAlign="center center">
-  <md-card fxLayout="column" fxLayoutAlign="none center">
+  <md-card *ngIf="!(authService.loggedinStream | async);else alreadySignedInTemplate" fxLayout="column" fxLayoutAlign="none center">
     <md-card-title>
       <span fxShow="false" fxShow.gt-xs>You must be signed in to use this app!</span>
       <span fxShow="false" fxShow.xs>Must be signed in!</span>
     </md-card-title>
     <button md-button id="google-button" (click)="authService.signinWithGoogle()"></button>
   </md-card>
+  <template #alreadySignedInTemplate>
+    <md-card fxLayout="column" fxLayoutAlign="none center">
+      <md-card-title>
+        <span fxShow="false" fxShow.gt-xs>You are already signed in as {{authService.displayNameStream | async}}</span>
+        <span fxShow="false" fxShow.xs>Already Signed In!</span>
+      </md-card-title>
+      <button md-raised-button id="google-button-signout" (click)="authService.signoutWithGoogle()">Sign Out</button>
+  </md-card>
+  </template>
 </div>

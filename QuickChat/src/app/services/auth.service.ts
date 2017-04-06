@@ -19,7 +19,16 @@ export class AuthService {
 
   get loggedinStream(): Observable<boolean> {
     return this.afAuth.map<FirebaseAuthState, boolean>( (authState: FirebaseAuthState) => {
-      return authState != null;
+      return authState != null
+    })
+  }
+
+  get displayNameStream(): Observable<string> {
+    return this.afAuth.map<FirebaseAuthState, string>( (authState: FirebaseAuthState) => {
+      if(authState){
+        return authState.google.displayName
+      }
+      return null
     })
   }
 
