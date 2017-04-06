@@ -16,6 +16,9 @@ import { MainComponent } from './+main/main.component';
 import { SigninComponent } from './+signin/signin.component';
 import { MypostComponent } from './+mypost/mypost.component';
 import { AuthService } from "app/services/auth.service";
+import { CreatePostComponent } from './create-post/create-post.component';
+import { PostListComponent } from './post-list/post-list.component';
+import { PostEntryComponent } from './post-entry/post-entry.component';
  
 
 @NgModule({
@@ -23,7 +26,10 @@ import { AuthService } from "app/services/auth.service";
     AppComponent,
     MainComponent,
     SigninComponent,
-    MypostComponent
+    MypostComponent,
+    CreatePostComponent,
+    PostListComponent,
+    PostEntryComponent
   ],
   imports: [
     BrowserModule,
