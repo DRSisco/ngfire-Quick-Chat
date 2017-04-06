@@ -19,5 +19,9 @@
     <span fxFlex></span>
     <span *ngIf="authService.displayNameStream | async as name">{{ name }}</span>
   </md-toolbar>
-  <router-outlet></router-outlet>
+  <div fxLayoutAlign="center center">
+    <div class="container" fxFlex class.gt-xs="bigger-container" fxFlex.md="960px" fxFlex.gt-md="1100px">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </md-sidenav-container>

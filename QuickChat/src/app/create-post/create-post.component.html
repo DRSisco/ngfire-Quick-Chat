@@ -1,3 +1,9 @@
-<p>
-  create-post works!
-</p>
+<md-card>
+  <img *ngIf="(authService.displayPictureStream | async) as photo;else missingPhotoTemplate" [src]="photo" alt="Profile photo">
+  <template #missingPhotoTemplate>
+    <img src="assets/images/missing_photo.png" alt="Photo missing">
+  </template>
+  <md-input-container fxFlex divider-color="accent">
+    <input mdInput type="text" placeholder="Make a post" required>
+  </md-input-container>
+</md-card>

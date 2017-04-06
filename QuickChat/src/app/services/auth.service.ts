@@ -32,6 +32,15 @@ export class AuthService {
     })
   }
 
+    get displayPictureStream(): Observable<string> {
+    return this.afAuth.map<FirebaseAuthState, string>( (authState: FirebaseAuthState) => {
+      if(authState){
+        return authState.google.photoURL
+      }
+      return null
+    })
+  }
+
   signinWithGoogle() {
     this.afAuth.login({
       provider: AuthProviders.Google,
