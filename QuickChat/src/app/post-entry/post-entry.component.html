@@ -1,7 +1,10 @@
 <div class="post" fxLayout fxLayoutAlign="none center">
-  <img src="assets/images/missing_photo.png" alt="Photo missing">
+  <img *ngIf="post.author.photoURL as photoUrl;else missingPhotoTemplate" [src]="photoUrl" alt="Profile photo">
+  <template #missingPhotoTemplate>-->
+    <img src="assets/images/missing_photo.png" alt="Photo missing">
+  </template>
   <div fxFlex fxLayout="column">
-    <div fxFlex class="author-name">Donald Trump</div>
-    <div fxFlex class="post-body">Trump Trump</div>
+    <div fxFlex class="author-name">{{post.author.displayName}}</div>
+    <div fxFlex class="post-body">{{post.postBody}}</div>
   </div>
 </div>

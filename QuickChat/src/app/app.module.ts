@@ -1,3 +1,4 @@
+import { AuthorService } from './services/author.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -19,6 +20,8 @@ import { AuthService } from "app/services/auth.service";
 import { CreatePostComponent } from './create-post/create-post.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { PostEntryComponent } from './post-entry/post-entry.component';
+import { PostEntryService } from "app/services/post-entry.service";
+import { ReversePipe } from './reverse.pipe';
  
 
 @NgModule({
@@ -29,7 +32,8 @@ import { PostEntryComponent } from './post-entry/post-entry.component';
     MypostComponent,
     CreatePostComponent,
     PostListComponent,
-    PostEntryComponent
+    PostEntryComponent,
+    ReversePipe
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,7 @@ import { PostEntryComponent } from './post-entry/post-entry.component';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
-  providers: [AuthService, AuthGuardService],
+  providers: [AuthService, AuthGuardService, PostEntryService, AuthorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

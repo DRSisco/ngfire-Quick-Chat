@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { PostWithAuthor } from 'app/models/post.model';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from "app/services/auth.service";
 
 @Component({
@@ -7,8 +8,9 @@ import { AuthService } from "app/services/auth.service";
   styleUrls: ['./post-entry.component.scss', '../shared/common.scss']
 })
 export class PostEntryComponent implements OnInit {
-
   constructor(public authService: AuthService) { }
+
+  @Input() post : PostWithAuthor;
 
   ngOnInit() {
   }

@@ -1,15 +1,10 @@
 <md-card fxLayout="column" fxLayoutAlign="none stretch">
-  <app-post-entry></app-post-entry>
-  <br>
-  <app-post-entry></app-post-entry>
-  <br>
-  <app-post-entry></app-post-entry>
-  <br>
-  <app-post-entry></app-post-entry>
-  <br>
-  <app-post-entry></app-post-entry>
-  <br>
-  <app-post-entry></app-post-entry>
-  <br>
-  <app-post-entry></app-post-entry>
+  <div *ngFor="let post of (postService.postWithAuthorStream | async) | reverse">
+    <app-post-entry [post]="post"></app-post-entry>
+    <hr>
+  </div>
+
+  <div fxLayoutAlign="end center">
+    <button *ngIf="postService.hasMorePosts" md-raised-button color="accent" (click)=postService.displayMorePosts()>Load more posts</button>
+  </div>
 </md-card>
