@@ -12,7 +12,7 @@ export class PostEntryService {
   readonly postsPath = "posts"
   private postIncrementStream: Subject<number>
   private _postWithAuthorsStream: Observable<PostWithAuthor[]>
-  readonly postsBatchSize = 4
+  readonly postsBatchSize = 5
   public hasMorePosts = true
 
   constructor(private af: AngularFire, private authorService: AuthorService) { 
@@ -52,6 +52,14 @@ export class PostEntryService {
 
   displayMorePosts(): void{
     this.postIncrementStream.next(this.postsBatchSize)
+  }
+
+  remove(postKeyToRemove: string): void {
+    firebase.database().ref().child(this.postsPath).child(postKeyToRemove).remove()
+  }
+
+  update(postKey: string, post: Post) {
+    firebase.database().ref().child(this.postsPath).child(postKey).set(post)
   }
 
   add(post : Post) {
