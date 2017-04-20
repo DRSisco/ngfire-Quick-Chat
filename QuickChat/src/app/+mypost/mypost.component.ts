@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PostEntryService } from "app/services/post-entry.service";
 
 @Component({
   selector: 'app-mypost',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MypostComponent implements OnInit {
 
-  constructor() { }
+  constructor(private postService: PostEntryService) { }
 
   ngOnInit() {
+    this.postService.showOnlyMyPost(true)
   }
 
 }

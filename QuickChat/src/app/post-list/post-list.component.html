@@ -5,6 +5,6 @@
   </div>
 
   <div fxLayoutAlign="end center">
-    <button *ngIf="postService.hasMorePosts" md-raised-button color="accent" (click)=postService.displayMorePosts()>Load more posts</button>
+    <button *ngIf="postService.hasMorePosts && !postService.hideLoadMoreButton" md-raised-button color="accent" (click)=postService.displayMorePosts()>Load more posts</button>
   </div>
 </md-card>
