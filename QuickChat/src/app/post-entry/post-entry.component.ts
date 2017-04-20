@@ -30,9 +30,12 @@ export class PostEntryComponent implements OnInit {
     }
   }
 
-  editPost(): void {
+  editPost(updateInputElem: HTMLInputElement): void {
     this.updatedPostBody = this.post.postBody
     this.editingMode = EditMode.Editing
+    setTimeout(() => {
+      updateInputElem.focus()
+    }, 0)
   }
 
   removePost(): void {

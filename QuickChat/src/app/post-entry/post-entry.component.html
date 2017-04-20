@@ -5,17 +5,13 @@
   </template>
   <div fxFlex fxLayout="column">
     <div fxFlex class="author-name">{{post.author.displayName}}</div>
-    <div *ngIf="editingMode != 2;else editPostTemplate" fxFlex class="post-body">{{post.postBody}}</div>
-    <ng-template #editPostTemplate>
-      <form (ngSubmit)="saveEdit()">
-        <md-input-container fxFlex dividerColor="accent">
-          <input mdInput type="text" placeholder="Edit your post" [(ngModel)]="updatedPostBody" name="updatedPostBody">
-        </md-input-container>
-      </form>
-    </ng-template>
+    <div [class.show] *ngIf="editingMode != 2" fxFlex class="post-body">{{post.postBody}}</div>
+    <md-input-container [class.hide]="editingMode != 2" fxFlex dividerColor="accent">
+      <input #updateInputElem mdInput type="text" placeholder="Edit your post" [(ngModel)]="updatedPostBody" name="updatedPostBody" (keyup.enter)="saveEdit()">
+    </md-input-container>
   </div>
   <div *ngIf="editingMode == 1" >
-    <button md-icon-button (click)="editPost()">
+    <button md-icon-button (click)="editPost(updateInputElem)">
       <md-icon>edit</md-icon>
     </button>
     <button md-icon-button (click)="removePost()">
@@ -23,7 +19,7 @@
     </button>
   </div>
   <div *ngIf="editingMode == 2" >
-    <button md-icon-button (click)="saveEdit()">
+    <button [disabled]="post.postBody==updatedPostBody || updatedPostBody == ''" md-icon-button (click)="saveEdit()">
       <md-icon>save</md-icon>
     </button>
     <button md-icon-button (click)="cancelEdit()">
