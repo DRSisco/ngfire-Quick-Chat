@@ -20,6 +20,7 @@ export class PostEntryComponent implements OnInit {
 
   @Input() post : PostWithAuthor;
   public editingMode: EditMode = EditMode.NotEditable
+  public updatedPostBody: string;
 
   constructor(public authService: AuthService, private postService: PostEntryService, public snackBar: MdSnackBar) {}
 
@@ -30,6 +31,7 @@ export class PostEntryComponent implements OnInit {
   }
 
   editPost(): void {
+    this.updatedPostBody = this.post.postBody
     this.editingMode = EditMode.Editing
   }
 
@@ -51,6 +53,10 @@ export class PostEntryComponent implements OnInit {
   }
 
   saveEdit(): void {
+    const updatedPost = new Post()
+    updatedPost.postBody = this.updatedPostBody
+    updatedPost.authorKey = this.authService.currentUserId
+    this.postService.update(this.post.$key, updatedPost)
     this.editingMode = EditMode.DisplayEditButton
   }
 

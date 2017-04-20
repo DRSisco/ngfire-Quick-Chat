@@ -5,7 +5,14 @@
   </template>
   <div fxFlex fxLayout="column">
     <div fxFlex class="author-name">{{post.author.displayName}}</div>
-    <div fxFlex class="post-body">{{post.postBody}}</div>
+    <div *ngIf="editingMode != 2;else editPostTemplate" fxFlex class="post-body">{{post.postBody}}</div>
+    <ng-template #editPostTemplate>
+      <form (ngSubmit)="saveEdit()">
+        <md-input-container fxFlex dividerColor="accent">
+          <input mdInput type="text" placeholder="Edit your post" [(ngModel)]="updatedPostBody" name="updatedPostBody">
+        </md-input-container>
+      </form>
+    </ng-template>
   </div>
   <div *ngIf="editingMode == 1" >
     <button md-icon-button (click)="editPost()">
